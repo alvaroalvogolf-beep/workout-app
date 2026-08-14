@@ -229,8 +229,7 @@
       <div class="auth-title">Sync your log</div>
       <div class="auth-sub" id="authSub">Enter your email and we'll send a 6-digit code.</div>
       <input type="email" id="authEmail" class="auth-input" placeholder="you@email.com" autocomplete="email">
-      <div id="authCodeWrap" style="display:none;"><input type="text" id="authCode" class="auth-input" placeholder="6-digit code" inputmode="numeric" autocomplete="one-time-code"></div>
-      <button class="auth-btn" id="authPrimary">Send code</button>
+      <button class="auth-btn" id="authPrimary">Email me a link</button>
       <div class="auth-msg" id="authMsg"></div>
       <button class="auth-skip" id="authSkip">Skip — use on this device only</button>
     </div>
@@ -258,8 +257,9 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   // Replace the two values below with your project's URL and anon key
   // (Supabase dashboard -> Project Settings -> API). The anon key is safe to
   // put in a public repo; your data is protected by row-level security + login.
-  var SUPABASE_URL="https://azluqhrpnkzuttmpbdps.supabase.co";
-  var SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6bHVxaHJwbmt6dXR0bXBiZHBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY3MTAyNzIsImV4cCI6MjEwMjI4NjI3Mn0.YpJ5Mh8swRDwZd7yeQ3avGuhrQwrlJ47X2N2nPk-bcc";
+  var SUPABASE_URL="__SUPABASE_URL__";
+  var SUPABASE_ANON_KEY="__SUPABASE_ANON_KEY__";
+  var SUPABASE_REDIRECT="https://alvaroalvogolf-beep.github.io/workout-app/";
   // ==================================
 
   var DEFAULT_CONFIG={
@@ -425,36 +425,26 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       var sess=res&&res.data&&res.data.session;
       if(sess&&sess.user){cloud.user=sess.user;cloudPull(function(){render();});}
       else{showSignIn();}
-      cloud.client.auth.onAuthStateChange(function(evt,s){cloud.user=(s&&s.user)?s.user:null;cloudSetStatus(cloud.user?'ok':'off');});
+      cloud.client.auth.onAuthStateChange(function(evt,s){var had=!!cloud.user;cloud.user=(s&&s.user)?s.user:null;cloudSetStatus(cloud.user?'ok':'off');if(cloud.user&&!had){hideSignIn();cloudPull(function(){render();});}});
     },function(){});
   }
-  function showSignIn(){authStep='email';var ov=document.getElementById('authOverlay');document.getElementById('authCodeWrap').style.display='none';document.getElementById('authSub').textContent="Enter your email and we'll send a 6-digit code.";document.getElementById('authPrimary').textContent='Send code';document.getElementById('authMsg').textContent='';ov.classList.add('show');}
+  function showSignIn(){var ov=document.getElementById('authOverlay');document.getElementById('authSub').textContent="Enter your email and we'll send you a sign-in link. Open it on this device to sync.";document.getElementById('authPrimary').textContent='Email me a link';document.getElementById('authMsg').textContent='';document.getElementById('authMsg').style.color='var(--iron)';document.getElementById('authPrimary').disabled=false;ov.classList.add('show');}
   function hideSignIn(){document.getElementById('authOverlay').classList.remove('show');}
   function wireAuthOverlay(){
     var prim=document.getElementById('authPrimary');
     prim.addEventListener('click',function(){
       var msg=document.getElementById('authMsg');
-      if(authStep==='email'){
-        var em=document.getElementById('authEmail').value.trim();
-        if(!/.+@.+\..+/.test(em)){msg.textContent='Enter a valid email.';return;}
-        authEmail=em;prim.disabled=true;msg.textContent='Sending\u2026';
-        cloud.client.auth.signInWithOtp({email:em,options:{shouldCreateUser:true}}).then(function(res){
-          prim.disabled=false;
-          if(res.error){msg.textContent=res.error.message;return;}
-          authStep='code';document.getElementById('authCodeWrap').style.display='block';
-          document.getElementById('authSub').textContent='Code sent to '+em+'. Enter it below (or tap the link in the email).';
-          prim.textContent='Verify & sync';msg.textContent='';
-        },function(){prim.disabled=false;msg.textContent='Network error — check connection.';});
-      }else{
-        var code=document.getElementById('authCode').value.trim();
-        if(!code){msg.textContent='Enter the code from your email.';return;}
-        prim.disabled=true;msg.textContent='Verifying\u2026';
-        cloud.client.auth.verifyOtp({email:authEmail,token:code,type:'email'}).then(function(res){
-          prim.disabled=false;
-          if(res.error){msg.textContent=res.error.message;return;}
-          cloud.user=res.data.user;hideSignIn();cloudPull(function(){render();});
-        },function(){prim.disabled=false;msg.textContent='Network error — try again.';});
-      }
+      var em=document.getElementById('authEmail').value.trim();
+      if(!/.+@.+\..+/.test(em)){msg.style.color='var(--iron)';msg.textContent='Enter a valid email.';return;}
+      prim.disabled=true;msg.style.color='var(--muted)';msg.textContent='Sending\u2026';
+      var opts={emailRedirectTo:SUPABASE_REDIRECT,shouldCreateUser:true};
+      cloud.client.auth.signInWithOtp({email:em,options:opts}).then(function(res){
+        if(res.error){prim.disabled=false;msg.style.color='var(--iron)';msg.textContent=res.error.message;return;}
+        msg.style.color='var(--ok)';
+        document.getElementById('authSub').textContent='Check your email and tap the sign-in link. It will open this app already signed in.';
+        msg.textContent='Link sent to '+em+'.';
+        prim.textContent='Resend link';prim.disabled=false;
+      },function(){prim.disabled=false;msg.style.color='var(--iron)';msg.textContent='Network error — check connection.';});
     });
     document.getElementById('authSkip').addEventListener('click',hideSignIn);
   }
