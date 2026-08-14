@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Iron Log</title>
+<meta name="theme-color" content="#14161A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Iron Log">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAEJ0lEQVR4nO3dPW4bVxiGUVLILgSo0RK8g+wghRtvwkhhw02qNEFcGN6EGxfegXeQJQgwBGgZhlIEdiSbpObnzv2G75zTqRDnzvDRpysOIe53K3B5dX1fvQbmu7u92VevoWQBAt6GisC7HVDE29Yr7kUPImIOWTLuRR5YyAyxRNgXrR9QzAy1RCvNfkKEzBytpnWTCS1m5mrV0KyfCiGzhDnTevKEFjNLmdPWpKDFzNKmNjY6aDHTy5TWRgUtZnob29zgoMVMlTHtDQpazFQb2uCTQYuZtRjSYvNb31DpZNCmM2vzVJNHgxYza3WqTVsOohwM2nRm7Y41+lPQYuZcHGrVloMoj4I2nTk3PzZrQhNF0ET5HrTtBufqYbsmNFEETZSL3c52g/P3rWETmiiCJoqgibK3fyaJCU0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRPll+oF/PbqfclxP719WXLcXrZ6XUsndNVFrz720rZ8XcuCrj7xtayhtTWcU+Ua7KGJImiiCJoogiaKoIkiaKJ0vbHy4dfL/7/45+9R3/vx2evGq2GM5yOfr+cPnusXn+9aL+eobhP6UcwTjL2gtDP32s997sfoEnSrExJ1f62uea+o7aGJImiiCJoogiaKoIkiaKIImiiCJoqgiSJoogiaKIImiqCJImiilP/npGq/v/mjeglNfflavYJaJjRRBE0UQRNF0EQRNFEETRRBE0XQRNn8jZV3f/1ZvYSm1vAPzyuZ0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFG6BN3qgxd9+GZ/ra55rw/f7Dah556QmOvMvfY9P0m26xv8H57Y1t+Ifm7GRv3p7cuFVnKaPTRRBE0UQRNF0EQRNFEETZSyoKte1lnbGlpbwzlVrqF0Qlee+Bqe+KVs+bruL6+u70tXAA3ZQxNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRPl4u72Zl+9CGjh7vZmb0ITRdBEETRRLna7//Ye1QuBOb41bEITRdBE+R60bQfn6mG7JjRRBE2UR0HbdnBufmzWhCbKT0Gb0pyLQ60enNCiZu2ONWrLQZSjQZvSrNWpNk9OaFGzNk81actBlCeDNqVZiyEtDprQoqba0AYHbzlETZUx7Y3aQ4ua3sY2N/qPQlHTy5TWJr3KIWqWNrWxyS/biZqlzGmrSZSXV9f3LR6HbWsxJJvcWDGtmatVQ81DNK0Zo/UwbH7r27RmqCVaWTQ+05pDlhx63aapuLet12/uku2BuLehYvu5iv2uwDOs4e+nfwHdWQgB5sBUDgAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEkElEQVR4nO3dPW4bRxyH4aGQWwhQoyP4Br5BCje+hJEiRppUboK4CHKJNC58A98gRxAQCOAxAqUw5FAyRe7H7M5wf8/TuTA5S/7fnV1SsnelM9c3tw+t18By9vd3u9ZrONR0MYadUtpGsfoTG3pOWTuG1Z7M4DPGWiEs/iQGnzmWDmGxBzf41LRUCNUf1OCzpNohXNV8MMPP0mrPWJWaDD4t1NgNZu8Ahp9WaszerAAMP63NncHJARh+ejFnFicFYPjpzdSZHB2A4adXU2ZzVACGn96NndHBARh+LsWYWR0UgOHn0gyd2bMBGH4u1ZDZrfqjEHBpTgbg7M+lOzfDLwZg+NmKU7PsEohoRwNw9mdrXpppOwDRvgvA2Z+tOjbbdgCiPQnA2Z+tez7jdgCifQvA2Z8Uh7NuByCaAIh2VYrLH/I8zrwdgGgCIJoAiCYAou3cAJPMDkA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAET7ofUCHv34859Nn//zx3dNn39tXu+vutgBWr8ZvaxhLT0caw9rKKWDAHp5IUrpay1L6ekYe1hL8wCgJQEQTQBEEwDRBEA0ARCtyRdhf72+/v8Pf/8+6u9+evW+8mqo6c3I9/PNwSy8/bKvvZyzVt8Bngz/BGNfYNYz972ZOxtTrBpArQMUQX9qvSdrR+AegGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAonXzb4P24qdffm29hEX982/rFfTFDkA0ARBNAEQTANEEQDQBEE0ARBMA0XwR9swfv31ovYRF9fDfEvXEDkA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANFWDeDtl32Vx/n06n2Vx6GeWu9JrRkZavUdYO4BGv5+zX1v1h7+Uhr9SuThgfoVvW0ZG8Hnj+8WWskw7gGIJgCiCYBoAiCaAIgmAKI1D6D1x2CHelrLUno6xh7W0jyAUvp4IXpYw1p6ONYe1lBKKbvrm9uH1ouAVrrYAaAVARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARDtan9/t2u9CGhhf3+3swMQTQBEEwDRBEC0q1K+3gy0Xgis6XHm7QBEEwDRvgXgMogUh7NuByDakwDsAmzd8xm3AxDtuwDsAmzVsdm2AxDtaAB2AbbmpZm2AxDtxQDsAmzFqVk+uQOIgEt3boZdAhHtbAB2AS7VkNkdtAOIgEszdGYHXwKJgEsxZlZH3QOIgN6NndHRN8EioFdTZnPSp0AioDdTZ3Lyx6AioBdzZnHW9wAioLW5Mzj7izAR0EqN2as6vNc3tw81Hw+OqXnSrfqjEHYDllZ7xhYbWLsBNS11cl38jC0E5lj6qmK1SxYhMMZal9OrX7MLgVPWvo9setMqBkpp++FJd5/aiGLbevuk8D8voBgXdjKl0QAAAABJRU5ErkJggg==">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22Iron%20Log%22%2C%20%22short_name%22%3A%20%22Iron%20Log%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%2314161A%22%2C%20%22theme_color%22%3A%20%22%2314161A%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEkElEQVR4nO3dPW4bRxyH4aGQWwhQoyP4Br5BCje%2BhJEiRppUboK4CHKJNC58A98gRxAQCOAxAqUw5FAyRe7H7M5wf8/TuTA5S/7fnV1SsnelM9c3tw%2Bt18By9vd3u9ZrONR0MYadUtpGsfoTG3pOWTuG1Z7M4DPGWiEs/iQGnzmWDmGxBzf41LRUCNUf1OCzpNohXNV8MMPP0mrPWJWaDD4t1NgNZu8Ahp9WaszerAAMP63NncHJARh%2BejFnFicFYPjpzdSZHB2A4adXU2ZzVACGn96NndHBARh%2BLsWYWR0UgOHn0gyd2bMBGH4u1ZDZrfqjEHBpTgbg7M%2BlOzfDLwZg%2BNmKU7PsEohoRwNw9mdrXpppOwDRvgvA2Z%2BtOjbbdgCiPQnA2Z%2Btez7jdgCifQvA2Z8Uh7NuByCaAIh2VYrLH/I8zrwdgGgCIJoAiCYAou3cAJPMDkA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAET7ofUCHv34859Nn//zx3dNn39tXu%2BvutgBWr8ZvaxhLT0caw9rKKWDAHp5IUrpay1L6ekYe1hL8wCgJQEQTQBEEwDRBEA0ARCtyRdhf72%2B/v8Pf/8%2B6u9%2BevW%2B8mqo6c3I9/PNwSy8/bKvvZyzVt8Bngz/BGNfYNYz972ZOxtTrBpArQMUQX9qvSdrR%2BAegGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAonXzb4P24qdffm29hEX982/rFfTFDkA0ARBNAEQTANEEQDQBEE0ARBMA0XwR9swfv31ovYRF9fDfEvXEDkA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANFWDeDtl32Vx/n06n2Vx6GeWu9JrRkZavUdYO4BGv5%2BzX1v1h7%2BUhr9SuThgfoVvW0ZG8Hnj%2B8WWskw7gGIJgCiCYBoAiCaAIgmAKI1D6D1x2CHelrLUno6xh7W0jyAUvp4IXpYw1p6ONYe1lBKKbvrm9uH1ouAVrrYAaAVARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARDtan9/t2u9CGhhf3%2B3swMQTQBEEwDRBEC0q1K%2B3gy0Xgis6XHm7QBEEwDRvgXgMogUh7NuByDakwDsAmzd8xm3AxDtuwDsAmzVsdm2AxDtaAB2AbbmpZm2AxDtxQDsAmzFqVk%2BuQOIgEt3boZdAhHtbAB2AS7VkNkdtAOIgEszdGYHXwKJgEsxZlZH3QOIgN6NndHRN8EioFdTZnPSp0AioDdTZ3Lyx6AioBdzZnHW9wAioLW5Mzj7izAR0EqN2as6vNc3tw81Hw%2BOqXnSrfqjEHYDllZ7xhYbWLsBNS11cl38jC0E5lj6qmK1SxYhMMZal9OrX7MLgVPWvo9setMqBkpp%2B%2BFJd5/aiGLbevuk8D8voBgXdjKl0QAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image/png%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAOMElEQVR4nO3cP65TZx7H4XMRu7gSDUvIDrIDCppsAk1BNM1U04xCMWITaVKwg%2BwgS0AaIbGMiCmQE8P19fWx3//f5ylpeP36%2BPw%2Bfo/hbmNI9y9efum9BoASPn/6eNd7DTzkTenEgAf4SiD0YdMbMOwB9hEF9dngCgx8gLIEQXk2tAADH6AtQXA7G3glQx9gDGLgOjZtB0MfYGxi4HI26gmGPsCcxMB5NucRBj/AGoTAaTbliKEPsDYx8DcbsRn8AGmEQHgAGPwA2ZJDIPKFG/wAHEsMgagXbPADcE5SCES8UIMfgD0SQuBZ7wXUZvgDsFfC7Fi2cBLePADqW/U0YLkXZfADUMNqIbDUIwDDH4BaVpsxS9TMam8KAGNb4TRg%2BhMAwx%2BA1laYPVMHwApvAABzmn0GTXmEMfumA7CWGR8JTHcCYPgDMJoZZ9NUATDjBgOQYbYZNcWRxWybCkC2GR4JDH8CYPgDMJsZZtfQATDDBgLAKaPPsGEDYPSNA4CnjDzLhgyAkTcMAPYYdaYNFwCjbhQAXGvE2TZUAIy4QQBQwmgzbpgAGG1jAKC0kWbdEAEw0oYAQE2jzLzuATDKRgBAKyPMvq4BMMIGAEAPvWdgtwDo/cIBoLees7BLABj%2BAPBVr5nYPAAMfwD4Vo/Z2DQADH8AOK31jGwWAIY/AJzXclY2CQDDHwAu02pmdv9/AACA9qoHgG//ALBPi9lZNQAMfwC4Tu0ZWi0ADH8AuE3NWeo3AAAQqEoA%2BPYPAGXUmqnFA8DwB4CyaszWogFg%2BANAHaVnrN8AAECgYgHg2z8A1FVy1hYJAMMfANooNXM9AgCAQDcHgG//ANBWidnrBAAAAt0UAL79A0Aft87gqwPA8AeAvm6ZxR4BAECgqwLAt38AGMO1M9kJAAAE2h0Avv0DwFiumc1OAAAg0K4A8O0fAMa0d0Y7AQCAQBcHgG//ADC2PbPaCQAABLooAHz7B4A5XDqznQAAQCABAACBngwAx/8AMJdLZrcTAAAIdDYAfPsHgDk9NcOdAABAIAEAAIEeDQDH/wAwt3Oz3AkAAAQSAAAQ6GQAOP4HgDU8NtOdAABAIAEAAIEeBIDjfwBYy6nZ7gQAAAIJAAAIJAAAINA3AeD5PwCs6fsZ7wQAAAIJAAAIJAAAINBfAeD5PwCs7XjWOwEAgEACAAACCQAACCQAACDQs23zA0AASHGY%2BU4AACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAt35PwAAII8TAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAg0PPeC0jy6u373ktYyod3b3ovAXyuC/O5bufu/sXLL70XsTo3iLrcMOjB57oun%2Bv6PAKozE2iPntMa665%2BuxxfQKgIhdwO/aaVlxr7djrugRAJS7c9uw5tbnG2rPn9QiAClyw/dh7anFt9WPv6xAAABBIABSmVPvzHlCaa6o/70F5AgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACPS89wJm9uuP9w//8I9f2i/kyG8//Nz17wfW9brz/e31iXvuT79/7rCSNQiAK5wc/IM4fECFAFBK78F/zuF%2BLAT28whgp5GH/7GRP7DAPGa5l8xybx6JANhhtgtslg8uMKbZ7iGz3aN7EwAXmvXCmu0DDIxh1nvHrPfqHgTABWa/oGb9IAN9zH7PmP2e3YoAAIBAAuAJq5Tk7EUPtLHKvWKVe3dNAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACPe%2B9AKjhH//8V%2B8lsJD//dl7BVCeEwAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACPe%2B9AKjhv//5d%2B8lsJBXb9/3XgIU5wQAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgmAJ/z0%2B%2BfeSyjitx9%2B7r0EYAKr3CtWuXfXJAAAIJAAuMDsJblK0QNtzH7PmP2e3YoAuNCsF9TsH2Sgj1nvHbPeq3sQADvMdmHN%2BgEGxjDbPWS2e3RvAmCnWS6w2T64wJhmuZfMcm8eyfPeC5jR4UL79cf7zit5aJYPKzCPw33l9R%2B/dF7JQwb/9QTADU5deK/evu%2BwEoD6en/B%2BPDuTde/fzUeAQBAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQRAYR/evem9hHjeA0pzTfXnPShPAABAIAFQgVLtx95Ti2urH3tfhwCoxAXbnj2nNtdYe/a8HgFQkQu3HXtNK661dux1XQKgMhdwffaY1lxz9dnj%2Bu7uX7z80nsRKV69fd97CUtxg2AEPtdl%2BVy3IwAAIJBHAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABDo2edPH%2B96LwIAaOfzp493TgAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACPdu2r/8esPdCAID6DjPfCQAABBIAABBIAABAIAEAAIH%2BCgA/BASAtR3PeicAABBIAABAIAEAAIG%2BCQC/AwCANX0/450AAEAgAQAAgQQAAAR6EAB%2BBwAAazk1250AAEAgAQAAgU4GgMcAALCGx2a6EwAACCQAACDQowHgMQAAzO3cLHcCAACBBAAABDobAB4DAMCcnprhTgAAINCTAeAUAADmcsnsdgIAAIEEAAAEuigAPAYAgDlcOrOdAABAoIsDwCkAAIxtz6x2AgAAgXYFgFMAABjT3hntBAAAAu0OAKcAADCWa2azEwAACHRVADgFAIAxXDuTnQAAQKCrA8ApAAD0dcssvukEQAQAQB%2B3zmCPAAAg0M0B4BQAANoqMXudAABAoCIB4BQAANooNXOLnQCIAACoq%2BSs9QgAAAIVDQCnAABQR%2BkZW/wEQAQAQFk1ZmuVRwAiAADKqDVT/QYAAAJVCwCnAABwm5qztOoJgAgAgOvUnqHVHwGIAADYp8Xs9BsAAAjUJACcAgDAZVrNzGYnACIAAM5rOSubPgIQAQBwWusZ2fw3ACIAAL7VYzZ2%2BRGgCACAr3rNxG7/CkAEAJCu5yzs%2Bs8ARQAAqXrPwO7/D0DvDQCA1kaYfd0DYNvG2AgAaGGUmTdEAGzbOBsCALWMNOuGCYBtG2tjAKCk0WbcUAGwbeNtEADcasTZNlwAbNuYGwUA1xh1pg0ZANs27oYBwKVGnmXDBsC2jb1xAHDO6DNs6ADYtvE3EAC%2BN8PsGn6Bx%2B5fvPzSew0A8JgZBv/B8CcAx2baWACyzDajpgqAbZtvgwFY34yzaboFH/NIAICeZhz8B9OdABybeeMBmNvsM2jqANi2%2Bd8AAOazwuyZ/gUc80gAgJpWGPwH058AHFvpjQFgLKvNmKVezDGnAQCUsNrgP1jyRR0TAgBcY9XBf7DUI4BTVn8DASgvYXYs/wKPOQ0A4JyEwX8Q80KPCQEAjiUN/oO4F3xMCABkSxz8B7Ev/JgQAMiSPPgP4jfgmBAAWJvB/zcb8QgxALAGQ/80m/IEIQAwJ4P/PJuzgxgAGJuhfzkbdSUxADAGQ/86Nq0AMQDQlqF/OxtYgSAAKMvAL8%2BGNiAIAPYx8OuzwZ2IAoCvDPs%2BbPqgBAKwCgN%2BTP8HTkTLRqQgdREAAAAASUVORK5CYII%3D%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%7D%5D%7D">
+
+<style>
+  :root{
+    --bg:#14161A;--surface:#1B1E23;--surface-2:#242830;--chalk:#EDEAE3;
+    --muted:#8A8F98;--muted-2:#5C616B;--iron:#C1603E;--iron-dim:#4a2a1d;
+    --steel:#6C93B4;--steel-dim:#28384a;--line:#2B2F37;--danger:#BD5348;--ok:#5C8A6A;
+    --radius:10px;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
+    --font-display:'Arial Narrow',-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    --font-mono:'SF Mono','Roboto Mono','Courier New',monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--chalk);font-family:var(--font-body);min-height:100vh;-webkit-tap-highlight-color:transparent;}
+  #app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+  :focus-visible{outline:2px solid var(--steel);outline-offset:2px;}
+  .topbar{position:sticky;top:0;z-index:10;background:var(--bg);padding:calc(14px + var(--safe-t)) 16px 10px;border-bottom:1px solid var(--line);}
+  .topbar-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;}
+  .wordmark{font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:0.06em;text-transform:uppercase;}
+  .wordmark span{color:var(--iron);}
+  .date-label{font-size:12px;color:var(--muted);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.04em;}
+  .loader-row{margin-bottom:12px;}
+  .bar-wrap{position:relative;height:26px;display:flex;align-items:center;}
+  .bar-line{position:absolute;left:0;right:0;top:50%;height:3px;margin-top:-1.5px;background:var(--surface-2);border-radius:2px;}
+  .plates{position:relative;display:flex;gap:3px;align-items:center;flex-wrap:nowrap;padding-left:2px;}
+  .plate{width:9px;height:24px;background:var(--steel);border:1px solid var(--steel-dim);border-radius:2px;flex:none;opacity:0;transform:scaleY(0.3);animation:plate-in 0.25s ease-out forwards;}
+  @keyframes plate-in{to{opacity:1;transform:scaleY(1);}}
+  .plate-overflow{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-left:4px;align-self:center;}
+  .loader-stats{display:flex;gap:8px;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-top:6px;}
+  .loader-stats .dot{color:var(--muted-2);}
+  .loader-stats .hi{color:var(--chalk);font-weight:600;}
+  .day-tabs{display:flex;gap:5px;}
+  .day-tab{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:var(--font-display);font-weight:700;letter-spacing:0.03em;text-transform:uppercase;font-size:12px;padding:9px 2px;border-radius:8px;cursor:pointer;}
+  .day-tab.active{background:var(--steel-dim);border-color:var(--steel);color:var(--chalk);}
+  main{flex:1;padding:14px 16px calc(90px + var(--safe-b));}
+  .section-label{font-family:var(--font-display);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;font-size:13px;color:var(--muted);margin:18px 0 10px;}
+  .section-label:first-child{margin-top:2px;}
+  .empty-state{text-align:center;padding:40px 20px;color:var(--muted);}
+  .empty-state .eyebrow{font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.05em;font-size:14px;color:var(--chalk);font-weight:700;margin-bottom:6px;}
+  .empty-state p{font-size:13px;line-height:1.5;margin:0;}
+  .exercise-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;}
+  .exercise-header{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px;}
+  .exercise-name{font-size:14px;font-weight:600;color:var(--chalk);}
+  .exercise-last{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap;}
+  .set-progress{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:10px;}
+  .set-progress b{color:var(--chalk);font-weight:600;}
+  .set-progress.done b{color:var(--ok);}
+  .set-input-row{display:flex;align-items:center;gap:6px;}
+  .set-input-row input{background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-family:var(--font-mono);font-size:15px;border-radius:7px;padding:9px 8px;width:100%;min-width:0;}
+  .set-input-row input::placeholder{color:var(--muted-2);}
+  .x-sep{color:var(--muted);font-size:13px;flex:none;}
+  .add-set-btn{flex:none;background:var(--steel-dim);border:1px solid var(--steel);color:var(--chalk);font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:0.03em;font-size:12px;border-radius:7px;padding:0 14px;height:38px;cursor:pointer;}
+  .add-set-btn:active{transform:scale(0.97);}
+  .set-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .set-chip{display:flex;align-items:center;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:5px 4px 5px 9px;font-family:var(--font-mono);font-size:12px;color:var(--chalk);}
+  .set-chip button{background:none;border:none;color:var(--muted);font-size:14px;line-height:1;padding:4px 6px;cursor:pointer;}
+  .set-chip button:active{color:var(--danger);}
+  .quick-add-row{display:flex;gap:6px;margin-bottom:14px;}
+  .quick-add-row input{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--chalk);font-size:14px;border-radius:8px;padding:10px 12px;}
+  .quick-add-row button{flex:none;background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:12px;border-radius:8px;padding:0 14px;cursor:pointer;}
+  .session-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
+  .session-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;}
+  .session-head .left{display:flex;flex-direction:column;gap:2px;}
+  .session-date{font-size:14px;font-weight:600;}
+  .session-meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);}
+  .session-tag{font-family:var(--font-display);font-weight:700;letter-spacing:0.04em;text-transform:uppercase;font-size:11px;background:var(--steel-dim);border:1px solid var(--steel);color:var(--chalk);padding:3px 8px;border-radius:5px;}
+  .session-body{border-top:1px solid var(--line);padding:10px 14px 12px;display:none;}
+  .session-body.open{display:block;}
+  .session-ex-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:13px;border-bottom:1px solid var(--line);}
+  .session-ex-row:last-child{border-bottom:none;}
+  .session-ex-row .nm{color:var(--chalk);}
+  .session-ex-row .sets{font-family:var(--font-mono);color:var(--muted);text-align:right;}
+  .session-actions{margin-top:10px;display:flex;justify-content:flex-end;}
+  .danger-btn{background:none;border:1px solid var(--line);color:var(--muted);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:0.04em;border-radius:6px;padding:7px 10px;cursor:pointer;}
+  .danger-btn.armed{background:var(--danger);border-color:var(--danger);color:var(--chalk);}
+  .settings-group{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:12px;}
+  .settings-group h3{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:13px;margin:0 0 10px;color:var(--chalk);display:flex;align-items:baseline;gap:8px;}
+  .settings-group h3 .cnt{font-family:var(--font-mono);font-size:11px;color:var(--muted);font-weight:400;}
+  .ex-edit-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);}
+  .ex-edit-row:last-of-type{border-bottom:none;}
+  .ex-edit-row .nm{flex:1;font-size:13px;color:var(--chalk);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .set-stepper{display:flex;align-items:center;gap:0;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;overflow:hidden;flex:none;}
+  .set-stepper button{background:none;border:none;color:var(--chalk);width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1;}
+  .set-stepper button:active{background:var(--line);}
+  .set-stepper .val{font-family:var(--font-mono);font-size:13px;min-width:34px;text-align:center;color:var(--chalk);}
+  .set-stepper .val small{color:var(--muted);font-size:10px;}
+  .ex-edit-row .rm{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px 6px;flex:none;}
+  .ex-edit-row .rm:active{color:var(--danger);}
+  .add-ex-row{display:flex;gap:6px;margin-top:10px;}
+  .add-ex-row input{flex:1;background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-size:13px;border-radius:7px;padding:9px 10px;}
+  .add-ex-row button{flex:none;background:var(--steel-dim);border:1px solid var(--steel);color:var(--chalk);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:12px;border-radius:7px;padding:0 14px;cursor:pointer;}
+  .exercise-head-left{display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .exercise-muscle{font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.05em;font-size:10px;color:var(--muted);}
+  .ex-edit-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;}
+  .ex-edit-muscle{font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.05em;font-size:10px;color:var(--muted);}
+  .add-ex-wrap{margin-top:10px;}
+  .add-ex-name{width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-size:13px;border-radius:7px;padding:9px 10px;margin-bottom:6px;}
+  .add-ex-row2{display:flex;gap:6px;}
+  .add-ex-muscle{flex:1;background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-size:13px;border-radius:7px;padding:9px 10px;}
+  .add-ex-row2 button{flex:none;background:var(--steel-dim);border:1px solid var(--steel);color:var(--chalk);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:12px;border-radius:7px;padding:0 16px;cursor:pointer;}
+  .unit-toggle{display:flex;gap:6px;}
+  .unit-btn{flex:1;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:12px;border-radius:7px;padding:9px 0;cursor:pointer;}
+  .unit-btn.active{background:var(--steel-dim);border-color:var(--steel);color:var(--chalk);}
+  .bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:10;max-width:520px;margin:0 auto;display:flex;background:var(--surface);border-top:1px solid var(--line);padding:8px 10px calc(8px + var(--safe-b));gap:6px;}
+  .nav-btn{flex:1;background:none;border:none;color:var(--muted);font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:12px;padding:10px 0;border-radius:8px;cursor:pointer;}
+  .nav-btn.active{background:var(--surface-2);color:var(--chalk);}
+  .toast{position:fixed;left:50%;bottom:calc(74px + var(--safe-b));transform:translateX(-50%);background:var(--surface-2);border:1px solid var(--line);color:var(--chalk);font-size:12px;padding:8px 14px;border-radius:20px;opacity:0;pointer-events:none;transition:opacity 0.2s ease;z-index:20;max-width:88%;text-align:center;}
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="wordmark">IRON<span> LOG</span></div>
+      <div class="date-label" id="dateLabel"></div>
+    </div>
+    <div class="loader-row">
+      <div class="bar-wrap"><div class="bar-line"></div><div class="plates" id="platesContainer"></div></div>
+      <div class="loader-stats"><span class="hi" id="setCount">0 sets</span><span class="dot">&middot;</span><span id="volCount">0 kg moved</span></div>
+    </div>
+    <div class="day-tabs" id="dayTabs"></div>
+  </header>
+  <main id="mainContent"></main>
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-view="log">Log</button>
+    <button class="nav-btn" data-view="history">History</button>
+    <button class="nav-btn" data-view="exercises">Plan</button>
+  </nav>
+  <div class="toast" id="toast"></div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var DEFAULT_CONFIG = {
+    unit:'kg',
+    dayTypes:['Upper','Lower','Push','Pull','Legs'],
+    exercises:{
+      Upper:[
+        {name:'Incline Bench Press (Dumbbell)',sets:3,muscle:'Chest'},
+        {name:'Seated Row (Machine)',sets:2,muscle:'Back'},
+        {name:'Lateral Raise (Machine)',sets:1,muscle:'Shoulders'},
+        {name:'Incline Curl (Dumbbell)',sets:1,muscle:'Arms'},
+        {name:'Triceps Pushdown (Cable - Straight Bar)',sets:3,muscle:'Arms'}
+      ],
+      Lower:[
+        {name:'Hip Adductor (Machine)',sets:3,muscle:'Legs'},
+        {name:'Belt Squat',sets:1,muscle:'Legs'},
+        {name:'Leg Extension (Machine)',sets:3,muscle:'Legs'},
+        {name:'Romanian Deadlift (Dumbbell)',sets:1,muscle:'Legs'},
+        {name:'Lying Leg Curl (Machine)',sets:3,muscle:'Legs'},
+        {name:'Standing Calf Raise (Machine)',sets:2,muscle:'Legs'}
+      ],
+      Push:[
+        {name:'Incline Bench Press (Dumbbell)',sets:4,muscle:'Chest'},
+        {name:'Chest Press (Machine)',sets:3,muscle:'Chest'},
+        {name:'Pec Deck (Machine)',sets:3,muscle:'Chest'},
+        {name:'Seated Overhead Press (Dumbbell)',sets:3,muscle:'Shoulders'},
+        {name:'Lateral Raise (Machine)',sets:3,muscle:'Shoulders'},
+        {name:'Skullcrusher (Dumbbell)',sets:2,muscle:'Arms'},
+        {name:'Triceps Pushdown (Cable - Straight Bar)',sets:3,muscle:'Arms'}
+      ],
+      Pull:[
+        {name:'Lat Pulldown (Cable)',sets:3,muscle:'Back'},
+        {name:'Bent Over One Arm Row (Dumbbell)',sets:3,muscle:'Back'},
+        {name:'Lat Rope Stretch',sets:3,muscle:'Back'},
+        {name:'Incline Curl (Dumbbell)',sets:3,muscle:'Arms'},
+        {name:'Preacher Curl (Dumbbell)',sets:3,muscle:'Arms'},
+        {name:'Shrug (Dumbbell)',sets:2,muscle:'Shoulders'},
+        {name:'Cable Crunch',sets:1,muscle:'Core'}
+      ],
+      Legs:[
+        {name:'Hip Adductor (Machine)',sets:3,muscle:'Legs'},
+        {name:'Leg Press',sets:1,muscle:'Legs'},
+        {name:'Leg Extension (Machine)',sets:3,muscle:'Legs'},
+        {name:'Romanian Deadlift (Dumbbell)',sets:1,muscle:'Legs'},
+        {name:'Lying Leg Curl (Machine)',sets:3,muscle:'Legs'},
+        {name:'Standing Calf Raise (Machine)',sets:2,muscle:'Legs'}
+      ]
+    }
+  };
+  var state={config:null,sessions:null,view:'log',dayType:'Upper',loaded:false,armed:{},historyOpen:{}};
+  function todayKey(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function prettyDate(key){var p=key.split('-');var d=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));return d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});}
+  function uid(){return 'id'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+  function round1(n){return Math.round(n*10)/10;}
+  function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(showToast._h);showToast._h=setTimeout(function(){t.classList.remove('show');},1700);}
+  function migrateConfig(cfg){
+    if(!cfg||!cfg.exercises)return cfg;
+    Object.keys(cfg.exercises).forEach(function(day){
+      cfg.exercises[day]=(cfg.exercises[day]||[]).map(function(item){
+        if(typeof item==='string')return {name:item,sets:3,muscle:''};
+        return {name:item.name,sets:(item.sets||3),muscle:(item.muscle||'')};
+      });
+    });
+    if(!cfg.dayTypes)cfg.dayTypes=DEFAULT_CONFIG.dayTypes.slice();
+    cfg.dayTypes=cfg.dayTypes.filter(function(d){return d!=='Other';});
+    if(cfg.exercises.Other&&cfg.exercises.Other.length===0){delete cfg.exercises.Other;}
+    return cfg;
+  }
+  var MEM={};
+  var LS={
+    get:function(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return (k in MEM)?MEM[k]:null;}},
+    set:function(k,val){try{localStorage.setItem(k,JSON.stringify(val));}catch(e){MEM[k]=val;}}
+  };
+  function loadAll(){
+    var cfg=LS.get('ironlog_config');
+    var sess=LS.get('ironlog_sessions');
+    if(cfg){state.config=migrateConfig(cfg);}else{state.config=JSON.parse(JSON.stringify(DEFAULT_CONFIG));}
+    state.sessions=sess||[];
+    saveConfig();
+    if(state.config.dayTypes.indexOf(state.dayType)===-1){state.dayType=state.config.dayTypes[0];}
+    state.loaded=true;
+  }
+  function saveConfig(){LS.set('ironlog_config',state.config);}
+  function saveSessions(){LS.set('ironlog_sessions',state.sessions);}
+  function exList(day){return state.config.exercises[day]||[];}
+  function getTodaySession(dayType){var key=todayKey();for(var i=0;i<state.sessions.length;i++){if(state.sessions[i].date===key&&state.sessions[i].dayType===dayType)return state.sessions[i];}return null;}
+  function getOrCreateTodaySession(dayType){var s=getTodaySession(dayType);if(s)return s;s={id:uid(),date:todayKey(),dayType:dayType,entries:[]};state.sessions.push(s);return s;}
+  function lastEntryFor(exercise){
+    var todayk=todayKey();
+    var candidates=state.sessions.filter(function(s){return s.date<todayk&&s.entries.some(function(e){return e.exercise===exercise;});});
+    if(!candidates.length)return null;
+    candidates.sort(function(a,b){return a.date<b.date?1:-1;});
+    var s=candidates[0];
+    var ex=s.entries.filter(function(e){return e.exercise===exercise;});
+    var top=ex.reduce(function(a,b){return (b.weight>a.weight)?b:a;},ex[0]);
+    return {date:s.date,weight:top.weight,reps:top.reps};
+  }
+  function addSet(dayType,exercise,weight,reps){var s=getOrCreateTodaySession(dayType);s.entries.push({exercise:exercise,weight:weight,reps:reps,ts:Date.now()});saveSessions();}
+  function removeSet(sessionId,ts){var s=state.sessions.find(function(x){return x.id===sessionId;});if(!s)return;s.entries=s.entries.filter(function(e){return e.ts!==ts;});saveSessions();}
+  function deleteSession(sessionId){state.sessions=state.sessions.filter(function(s){return s.id!==sessionId;});saveSessions();}
+  function render(){
+    document.getElementById('dateLabel').textContent=prettyDate(todayKey());
+    renderDayTabs();renderPlateLoader();renderNav();
+    if(state.view==='log')renderLog();else if(state.view==='history')renderHistory();else renderPlanView();
+  }
+  function renderDayTabs(){
+    var wrap=document.getElementById('dayTabs');
+    if(state.view!=='log'){wrap.style.display='none';return;}
+    wrap.style.display='flex';
+    wrap.innerHTML=state.config.dayTypes.map(function(dt){
+      var active=dt===state.dayType?' active':'';
+      var label=dt.length>6?dt.slice(0,5):dt;
+      return '<button class="day-tab'+active+'" data-day="'+esc(dt)+'" title="'+esc(dt)+'">'+esc(label)+'</button>';
+    }).join('');
+  }
+  function renderPlateLoader(){
+    var s=getTodaySession(state.dayType);var entries=(s?s.entries:[]);
+    var count=entries.length;var vol=entries.reduce(function(sum,e){return sum+e.weight*e.reps;},0);
+    var container=document.getElementById('platesContainer');var maxShow=14;var html='';
+    for(var i=0;i<Math.min(count,maxShow);i++){html+='<div class="plate"></div>';}
+    container.innerHTML=html;
+    var overflow=document.querySelector('.plate-overflow');if(overflow)overflow.remove();
+    if(count>maxShow){var span=document.createElement('span');span.className='plate-overflow';span.textContent='+'+(count-maxShow);container.parentElement.appendChild(span);}
+    document.getElementById('setCount').textContent=count+(count===1?' set':' sets');
+    document.getElementById('volCount').textContent=round1(vol)+' '+state.config.unit+' moved';
+  }
+  function renderNav(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-view')===state.view);});}
+  function esc(str){var d=document.createElement('div');d.textContent=str;return d.innerHTML;}
+  function renderLog(){
+    var main=document.getElementById('mainContent');var list=exList(state.dayType);
+    var s=getTodaySession(state.dayType);var byEx={};
+    if(s){s.entries.forEach(function(e){(byEx[e.exercise]=byEx[e.exercise]||[]).push(e);});}
+    var html='<div class="section-label">'+esc(state.dayType)+' day</div>';
+    if(!list.length){
+      html+='<div class="empty-state"><div class="eyebrow">No exercises yet</div><p>Add exercises for '+esc(state.dayType)+' day in the Plan tab, then log your sets here.</p></div>';
+    }else{
+      list.forEach(function(item){
+        var ex=item.name;var target=item.sets||0;var done=(byEx[ex]||[]).length;
+        var last=lastEntryFor(ex);
+        var lastStr=last?('last '+round1(last.weight)+state.config.unit+' &times; '+last.reps):'no history';
+        var progDone=target>0&&done>=target;
+        var progStr=target>0?('<span class="set-progress'+(progDone?' done':'')+'"><b>'+done+' / '+target+'</b> sets</span>'):('<span class="set-progress"><b>'+done+'</b> sets</span>');
+        var chips=(byEx[ex]||[]).map(function(e){return '<span class="set-chip">'+round1(e.weight)+state.config.unit+' &times; '+e.reps+'<button data-remove-ts="'+e.ts+'" data-remove-session="'+(s?s.id:'')+'" aria-label="Remove set">&times;</button></span>';}).join('');
+        var muscleTag=item.muscle?'<span class="exercise-muscle">'+esc(item.muscle)+'</span>':'';
+        html+='<div class="exercise-card"><div class="exercise-header"><div class="exercise-head-left"><span class="exercise-name">'+esc(ex)+'</span>'+muscleTag+'</div><span class="exercise-last">'+lastStr+'</span></div>'+progStr+
+          '<div class="set-input-row"><input type="number" inputmode="decimal" class="weight-input" placeholder="'+state.config.unit+'" step="0.5"><span class="x-sep">&times;</span><input type="number" inputmode="numeric" class="reps-input" placeholder="reps"><button class="add-set-btn" data-add-exercise="'+esc(ex)+'">Add</button></div>'+
+          (chips?'<div class="set-chips">'+chips+'</div>':'')+'</div>';
+      });
+    }
+    main.innerHTML=html;
+    main.querySelectorAll('[data-add-exercise]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var card=btn.closest('.exercise-card');var wInput=card.querySelector('.weight-input');var rInput=card.querySelector('.reps-input');
+        var w=parseFloat(wInput.value);var r=parseInt(rInput.value,10);
+        if(isNaN(w)||w<=0){wInput.focus();return;}
+        if(isNaN(r)||r<=0){rInput.focus();return;}
+        addSet(state.dayType,btn.getAttribute('data-add-exercise'),w,r);
+        wInput.value='';rInput.value='';render();
+      });
+    });
+    main.querySelectorAll('[data-remove-ts]').forEach(function(btn){
+      btn.addEventListener('click',function(){removeSet(btn.getAttribute('data-remove-session'),parseFloat(btn.getAttribute('data-remove-ts')));render();});
+    });
+  }
+  function renderHistory(){
+    var main=document.getElementById('mainContent');
+    var sessions=state.sessions.slice().sort(function(a,b){return a.date<b.date?1:-1;});
+    if(!sessions.length){main.innerHTML='<div class="empty-state"><div class="eyebrow">No sessions logged</div><p>Log a set from the Log tab and it will show up here.</p></div>';return;}
+    var html='<div class="section-label">History</div>';
+    sessions.forEach(function(s){
+      var open=!!state.historyOpen[s.id];var setCount=s.entries.length;
+      var vol=s.entries.reduce(function(sum,e){return sum+e.weight*e.reps;},0);
+      var byEx={};s.entries.forEach(function(e){(byEx[e.exercise]=byEx[e.exercise]||[]).push(e);});
+      var rows=Object.keys(byEx).map(function(ex){var setsStr=byEx[ex].map(function(e){return round1(e.weight)+state.config.unit+'&times;'+e.reps;}).join(', ');return '<div class="session-ex-row"><span class="nm">'+esc(ex)+'</span><span class="sets">'+setsStr+'</span></div>';}).join('');
+      var armed=state.armed[s.id];
+      html+='<div class="session-card"><div class="session-head" data-toggle-session="'+s.id+'"><div class="left"><span class="session-date">'+prettyDate(s.date)+'</span><span class="session-meta">'+setCount+' sets &middot; '+round1(vol)+' '+state.config.unit+'</span></div><span class="session-tag">'+esc(s.dayType)+'</span></div>'+
+        '<div class="session-body'+(open?' open':'')+'">'+(rows||'<div class="session-ex-row"><span class="nm">No sets</span></div>')+'<div class="session-actions"><button class="danger-btn'+(armed?' armed':'')+'" data-delete-session="'+s.id+'">'+(armed?'Tap to confirm':'Delete session')+'</button></div></div></div>';
+    });
+    main.innerHTML=html;
+    main.querySelectorAll('[data-toggle-session]').forEach(function(el){el.addEventListener('click',function(){var id=el.getAttribute('data-toggle-session');state.historyOpen[id]=!state.historyOpen[id];render();});});
+    main.querySelectorAll('[data-delete-session]').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.stopPropagation();var id=btn.getAttribute('data-delete-session');
+        if(state.armed[id]){deleteSession(id);delete state.armed[id];showToast('Session deleted');render();}
+        else{state.armed[id]=true;render();setTimeout(function(){state.armed[id]=false;render();},4000);}
+      });
+    });
+  }
+  function renderPlanView(){
+    var main=document.getElementById('mainContent');
+    var html='<div class="section-label">Your split &mdash; tap +/&minus; to set target sets</div>';
+    state.config.dayTypes.forEach(function(dt){
+      var list=exList(dt);var totalSets=list.reduce(function(a,b){return a+(b.sets||0);},0);
+      html+='<div class="settings-group"><h3>'+esc(dt)+' <span class="cnt">'+list.length+' exercises &middot; '+totalSets+' sets</span></h3>';
+      if(list.length){
+        list.forEach(function(item){
+          html+='<div class="ex-edit-row"><div class="ex-edit-info"><span class="nm">'+esc(item.name)+'</span>'+(item.muscle?'<span class="ex-edit-muscle">'+esc(item.muscle)+'</span>':'')+'</div><div class="set-stepper"><button data-set-day="'+esc(dt)+'" data-set-ex="'+esc(item.name)+'" data-set-dir="-1" aria-label="Fewer sets">&minus;</button><span class="val">'+(item.sets||0)+'<small> sets</small></span><button data-set-day="'+esc(dt)+'" data-set-ex="'+esc(item.name)+'" data-set-dir="1" aria-label="More sets">+</button></div><button class="rm" data-rm-day="'+esc(dt)+'" data-rm-ex="'+esc(item.name)+'" aria-label="Remove exercise">&times;</button></div>';
+        });
+      }else{html+='<p style="color:var(--muted);font-size:13px;margin:4px 0 0;">No exercises yet.</p>';}
+      html+='<div class="add-ex-wrap"><input type="text" class="add-ex-name" placeholder="Add exercise" data-new-ex-input="'+esc(dt)+'"><div class="add-ex-row2"><select class="add-ex-muscle" data-new-ex-muscle="'+esc(dt)+'"><option value="">Muscle group…</option><option>Chest</option><option>Back</option><option>Shoulders</option><option>Arms</option><option>Legs</option><option>Core</option></select><button data-new-ex-btn="'+esc(dt)+'">Add</button></div></div></div>';
+    });
+    html+='<div class="section-label">Units</div><div class="settings-group"><div class="unit-toggle"><button class="unit-btn'+(state.config.unit==='kg'?' active':'')+'" data-unit="kg">kg</button><button class="unit-btn'+(state.config.unit==='lb'?' active':'')+'" data-unit="lb">lb</button></div></div>';
+    html+='<div class="section-label">Data</div><div class="settings-group"><button class="danger-btn'+(state.armed['__clear']?' armed':'')+'" id="clearAllBtn">'+(state.armed['__clear']?'Tap to confirm &mdash; deletes everything':'Clear all data')+'</button></div>';
+    main.innerHTML=html;
+    main.querySelectorAll('[data-set-dir]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var dt=btn.getAttribute('data-set-day');var exn=btn.getAttribute('data-set-ex');var dir=parseInt(btn.getAttribute('data-set-dir'),10);
+        var item=exList(dt).find(function(x){return x.name===exn;});if(!item)return;
+        item.sets=Math.max(1,Math.min(12,(item.sets||0)+dir));saveConfig();render();
+      });
+    });
+    main.querySelectorAll('[data-rm-ex]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var dt=btn.getAttribute('data-rm-day');var exn=btn.getAttribute('data-rm-ex');
+        state.config.exercises[dt]=exList(dt).filter(function(x){return x.name!==exn;});saveConfig();render();
+      });
+    });
+    main.querySelectorAll('[data-new-ex-btn]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var dt=btn.getAttribute('data-new-ex-btn');var input=main.querySelector('[data-new-ex-input="'+dt+'"]');var msel=main.querySelector('[data-new-ex-muscle="'+dt+'"]');var name=input.value.trim();var muscle=msel?msel.value:'';
+        if(!name){input.focus();return;}
+        if(!exList(dt).some(function(x){return x.name===name;})){state.config.exercises[dt].push({name:name,sets:3,muscle:muscle});saveConfig();}
+        render();
+      });
+    });
+    main.querySelectorAll('[data-unit]').forEach(function(btn){
+      btn.addEventListener('click',function(){state.config.unit=btn.getAttribute('data-unit');saveConfig();render();});
+    });
+    document.getElementById('clearAllBtn').addEventListener('click',function(){
+      if(state.armed['__clear']){
+        state.sessions=[];state.config=JSON.parse(JSON.stringify(DEFAULT_CONFIG));state.dayType=state.config.dayTypes[0];
+        saveConfig();saveSessions();state.armed['__clear']=false;showToast('All data cleared');render();
+      }else{state.armed['__clear']=true;render();setTimeout(function(){state.armed['__clear']=false;render();},4000);}
+    });
+  }
+  document.getElementById('dayTabs').addEventListener('click',function(e){var btn=e.target.closest('.day-tab');if(!btn)return;state.dayType=btn.getAttribute('data-day');render();});
+  document.querySelector('.bottom-nav').addEventListener('click',function(e){var btn=e.target.closest('.nav-btn');if(!btn)return;state.view=btn.getAttribute('data-view');render();});
+  loadAll();
+  render();
+})();
+</script>
+</body>
+</html>
